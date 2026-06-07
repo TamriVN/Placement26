@@ -42,29 +42,21 @@ Re-run after updating any file in `docs/`, then commit and push `output/vnvc_map
 
 ## Host online (GitHub Pages)
 
-The repo includes a GitHub Actions workflow that publishes the report as a static site.
+The workflow pushes `output/vnvc_mapping_report.html` to the **`gh-pages`** branch as `index.html`.
 
 **One-time setup:**
 
-1. Push this repo to GitHub (you already have `origin` → `TamriVN/Placement26`).
-2. On GitHub: **Settings → Pages → Build and deployment → Source** → choose **GitHub Actions**.
-3. Push to `main` (or run the workflow manually under **Actions → Deploy mapping report → Run workflow**).
+1. Push this repo to GitHub and merge the workflow to `main`.
+2. Run the workflow once: **Actions → Deploy mapping report → Run workflow**.
+3. On GitHub: **Settings → Pages → Build and deployment**
+   - **Source:** Deploy from a branch
+   - **Branch:** `gh-pages` → `/ (root)` → **Save**
+4. Wait 1–2 minutes. Site URL:
 
-Your report will be live at:
+   `https://tamrivn.github.io/Placement26/`
 
-`https://tamrivn.github.io/Placement26/`
+After that, every push to `main` updates the site automatically.
 
-(After each push to `main`, the site updates automatically from `output/vnvc_mapping_report.html`.)
+**If you previously tried “GitHub Actions” as the Pages source and saw a 404 deploy error:** switch the Pages source to **Deploy from a branch → gh-pages** as above, then re-run the workflow.
 
-## Host on Render (alternative)
-
-1. [render.com](https://render.com) → **New → Static Site** → connect this GitHub repo.
-2. Settings:
-   - **Build command:** *(leave empty)*
-   - **Publish directory:** `output`
-3. Add a **Redirect/Rewrite** rule so the root URL serves the report:
-   - Source: `/`
-   - Destination: `/vnvc_mapping_report.html`
-   - Action: Rewrite
-
-Or copy the report to `output/index.html` before pushing if you prefer a simpler Render setup.
+**Private repo?** GitHub Pages on a private repo requires a paid GitHub plan. Make the repo public to use free Pages hosting.
